@@ -1,0 +1,67 @@
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+
+
+<html>
+
+    <head>
+
+        <title> JOSSIAH | Login </title>
+
+        <!-- bosstrap css -->
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/solar/bootstrap.min.css">
+
+        <!-- custom css-->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+
+
+    </head>
+
+        <br>
+
+    <div class = 'container bg-white shadow-md form-layout'>
+
+        <br>
+        <h3> Login to your account </h3>
+
+        <br>
+        <br>
+
+        <!--setting up a for-loop for our defualt message after a user creates account succesfully-->
+
+        {% for message in messages %}
+
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %} 
+
+              <p id = "message" class = "alert alert-success float-center message-text "> {{message }} </p>
+
+            {% endif %}
+
+
+        {% endfor %}
+
+
+    
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            {{ LoginForm|crispy }}
+
+            <br>
+
+            <button class = " btn btn-secondary btn-md w-80 btn-block p-6" type="submit"> Login </button>
+
+           
+        </form>
+
+            <br>
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+
+     
+
+</html>

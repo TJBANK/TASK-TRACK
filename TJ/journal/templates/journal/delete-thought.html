@@ -1,0 +1,42 @@
+
+
+
+{% extends "journal/nav-bar.html" %}
+
+
+{% block content %}
+
+    <br>
+
+    <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+        <h3> Delete a thought</h3>
+
+        
+        <br>
+
+        <p> Are you sure you want to delete this task ?</p>
+
+        
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            <button class = " btn btn-secondary btn-md w-80 btn-block p-6" type="submit"> Delete thought </button>
+
+           
+        </form>
+
+        <a href = {% url 'my_thoughts' %}> Return to thoughts</a>
+
+
+
+    </div>
+
+    <br>
+
+{% endblock %}
+
+
+
+
+

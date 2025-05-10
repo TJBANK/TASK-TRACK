@@ -1,0 +1,48 @@
+
+{% load static %} <!-- this allows us to load the css file(static file) into into our register.html file -->
+
+{% load crispy_forms_tags %}
+
+<html>
+
+
+    <head>
+
+        <title> JOSSIAH | Register</title>
+
+        <link rel="stylesheet" type="text/css" href="https://bootswatch.com/5/solar/bootstrap.min.css">
+
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+
+    <br>
+
+    <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+        <br>
+
+        <h4>  Create your account here </h4>
+        <h4> share your thoughts today !</h4>
+
+        <hr>
+
+        <br>
+
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            {{ RegistrationForm|crispy }}
+
+            <br>
+
+            <button class = " btn btn-secondary btn-md w-80 btn-block p-6" type="submit"> Create account </button>
+
+    
+
+        </form>
+
+        <br>
+        
+    </div>
+
+</html>

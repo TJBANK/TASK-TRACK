@@ -1,0 +1,40 @@
+
+{% extends "journal/nav-bar.html" %}
+
+{% block content %}
+
+    <br>
+
+    {% for thought in mythoughts %}
+
+        <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+            <h3> My thoughts </h3>
+
+            {{thought.title}}
+            <br>
+
+            {{thought.content}}
+            <br>
+
+            {{thought.date_posted}}
+            <br>
+            <br>
+
+            {{thought.user}}
+            <br>
+            <br>
+
+
+            <a href="{% url 'update_thought' thought.id %}"> Update thought  </a>
+            <br>
+            <a href="{% url 'delete_thought' thought.id %}"> Delete thought  </a>
+            
+
+
+        </div>
+
+        <br>
+    {% endfor %}
+
+{% endblock %}

@@ -1,0 +1,56 @@
+
+
+<!-- we are inheriting the navbar features to to our profile management page-->
+{% extends "journal/nav-bar.html" %}
+
+<!--the crispy command is just to enhance the quality of our form fields  -->
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <br>
+
+    <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+        <h3> Update username and email </h3>
+
+        <br>
+        <br>
+
+
+        <form method="POST" autocomplete="off">
+            {% csrf_token %}
+
+            {{ProfileForm|crispy}}
+
+            <br>
+
+            <button class = " btn btn-secondary btn-md w-80 btn-block p-6" type="submit"> Update </button>
+
+           
+        </form>
+
+
+
+    </div>
+
+    <br>
+
+    <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+        <h3> Delete account </h3>
+
+        <br>
+        
+        <a href="{% url 'delete_account' %}"> Proceed to delete account</a>
+    
+    </div>
+
+
+
+{% endblock %}
+
+
+
+
+
