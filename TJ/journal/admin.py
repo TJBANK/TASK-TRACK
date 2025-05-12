@@ -8,4 +8,5 @@ from .models import Thought, Profile
 #here we register our thought model inside our admin page
 admin.site.register(Thought)
 
+#setting up a functionality for file handling 
 admin.site.register(Profile)
