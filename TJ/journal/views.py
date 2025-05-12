@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 
 # importing our custom created forms'create_user_form' and 'Update_User_form' from forms.py file
-from .forms import create_user_form, LoginForm, ThoughtForm, Update_User_Form
+from .forms import create_user_form, LoginForm, ThoughtForm, Update_User_Form, UpdateProfileForm 
 
 from django.contrib.auth.models import auth
 
@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 #importing the default django flash messages 
 from django.contrib import messages
 
-from . models import Thought
+from . models import Thought, Profile
 
 from django.contrib.auth.models import User
 
@@ -34,12 +34,24 @@ def register(request):
     
     if request.method == 'POST':
         
+        #this will take all the data that has been entered by the user and store it including username, email etc
         form = create_user_form(request.POST)
         
         # verify if the form the user filled matches with what is expected 
         if form.is_valid():
             
+            #after a user creates an account,wait before u save the data
+            current_user = form.save(commit=False)
+            
+            #after saving...
             form.save()
+            
+            #we tell django to create a profile object and bind it to the user who just created the account.
+            profile = Profile.objects.create(user=current_user)
+            
+            
+            
+            
             
             #setting up our flash messages..
             messages.success(request, "User created!")
@@ -47,7 +59,7 @@ def register(request):
             # direct him to the login-page-path after registration
             return redirect('login_page')
             
-    # here we output the form that we have created onto our template
+    #here we output the form that we have created onto our template
     
     context = {'RegistrationForm': form}
     
@@ -100,7 +112,12 @@ def logout(request):
 @login_required(login_url='login_page')
 def dashboard(request):
     
-      return render(request, 'journal/dashboard.html')
+    #checking if the user in the database is matching the current user logged in..
+    profile_pic = Profile.objects.get(user=request.user)
+    
+    context ={'profilepic':'profile_pic'}
+    
+    return render(request, 'journal/dashboard.html', context)
   
 
 @login_required(login_url='login_page')
@@ -246,3 +263,4 @@ def deleteaccount(request):
         
     
     return render(request, 'journal/delete-account.html')
+
