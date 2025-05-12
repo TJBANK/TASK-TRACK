@@ -13,7 +13,9 @@ from django.forms.widgets import PasswordInput, TextInput
 from django.forms import ModelForm
 
 #importing the model we wanna work on
-from. models import Thought
+from. models import Thought, Profile
+
+
 
 
 class ThoughtForm(ModelForm):
@@ -33,11 +35,16 @@ class create_user_form(UserCreationForm):
         fields = ['username','email', 'password1', 'password2']
         
 
+
+
 class LoginForm(AuthenticationForm):
     
     # specifying our fields
     username = forms.CharField(widget=TextInput)
     password = forms.CharField(widget=PasswordInput)
+    
+    
+    
     
 class Update_User_Form(forms.ModelForm):
     
@@ -50,3 +57,19 @@ class Update_User_Form(forms.ModelForm):
         
         fields = ['username','email',]
         exclude = ['password1', 'password2',]
+        
+        
+#this model class will allow us to upload a profile-pic
+class UpdateProfileForm(forms.ModelForm):
+    
+    #
+    profile_pic = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+
+    class Meta:
+        
+        model = Profile
+        fields = ['profile_pic',]
+        
+        
+        
+    
