@@ -21,7 +21,7 @@
         <form method="POST" autocomplete="off">
             {% csrf_token %}
 
-            {{ProfileForm|crispy}}
+            {{UserupdateForm|crispy}}
 
             <br>
 
@@ -34,6 +34,33 @@
 
     </div>
 
+    <br>
+
+    <div class = 'container bg-white shadow-md p-5 form-layout'>
+
+        <h3> Update profile picture </h3>
+
+        <br>
+        <br>
+
+
+        <!--in order for files to be pushed, we need to use the enctype... commnad-->
+        <form method="POST" autocomplete="off" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            {{ProfileUpdateForm|crispy}}
+
+            <br>
+
+            <button class = " btn btn-secondary btn-md w-80 btn-block p-6" type="submit"> Upload picture </button>
+
+           
+        </form>
+
+
+
+    </div>
+    
     <br>
 
     <div class = 'container bg-white shadow-md p-5 form-layout'>
