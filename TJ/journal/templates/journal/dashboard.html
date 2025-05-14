@@ -14,9 +14,10 @@
         <br>
         <br>
 
-
         <!-- referencing our key in the dashboard function inside our views.py-->
-        <img src ="{{PROFILE_IMAGE.profile_pic.url}}">
+        <img style = 'width: 80px' height = '60px' src = "{{PROFILE_IMAGE.profile_pic.url}}">
+
+        <br> <br>
 
         <a href="{% url 'log_out' %}" > Logout Here !</a>
 
