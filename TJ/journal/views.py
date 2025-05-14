@@ -115,7 +115,7 @@ def dashboard(request):
     #checking if the user in the database is matching the current user logged in..
     profile_pic = Profile.objects.get(user=request.user)
     
-    context ={'profilepic':'profile_pic'}
+    context ={'PROFILE_IMAGE':profile_pic}
     
     return render(request, 'journal/dashboard.html', context)
   
@@ -230,20 +230,47 @@ def ProfileManagement(request):
     # getting the current data of the user logged-in in our website
     form = Update_User_Form(instance=request.user)
     
+    #gettiing the current profile photo the user is using which is likely to be the defualt photo if the user is new
+    profile = Profile.objects.get(user=request.user)
+    
+    #getting the latest data on the user logged in...
+    form_2 = UpdateProfileForm(instance=User)
+    
+    
+    
     # this commnd simple means a user wants to send someting. eg-a form
     if request.method == 'POST':
         
+        #updating the form after the system see its a post request from the user
         form = Update_User_Form(request.POST, instance= request.user)
         
+        
+        #we want the user to send a post request, where they will be able to upload a file based on the particlar instance the user that is currently logges in to overwrite the default photo.... 
+        form_2 = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+        
+        
+        
+        
+        #a chehck before the user can udpate his/her form ..
         if form.is_valid():
             
             form.save()
             
             return redirect('dash_board')
         
+        
+        
+        #a chehck before a user can changed the profile.
+        if form_2.is_valid():
+            
+            form_2.save()
+            
+            return redirect('dash_board')
+        
+        
+        
     
-    
-    context = {'ProfileForm': form}
+    context = {'UserupdateForm': form, 'ProfileUpdateForm': form_2}
     
     return render(request,  'journal/profile-manage.html', context)
 
