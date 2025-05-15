@@ -126,12 +126,22 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 
+# SMTP CONFIFGURATION FOR OUR APP
+
+#insuring that django is able to handle password reset
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'  #standord port number for email addresses
+EMAIL_USE_TLS = 'True'
 
 
+EMAIL_HOST_USER = 'tseth888@gmail.com'   # allows users to reset their password
+EMAIL_HOST_PASSWORD = 'jfmy qhaw sgda sllp' # -APP password
 
+DEFUALT_FROM_EMAIL = 'tseth888@gmail.com' #GMAIL email address
 
-
-
+  
 
 
 
@@ -147,13 +157,6 @@ STATIC_URL = 'static/'
 
 # django to look to go into our base directories and store our files in the static folder
 STATICFILES_DIRS = [BASE_DIR / 'static']
-
-
-
-
-
-
-
 
 
 
