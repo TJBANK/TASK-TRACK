@@ -129,17 +129,17 @@ USE_TZ = True
 # SMTP CONFIFGURATION FOR OUR APP
 
 #insuring that django is able to handle password reset
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = '587'  #standord port number for email addresses
-EMAIL_USE_TLS = 'True'
+EMAIL_PORT = 587         #standord port number for email addresses
+EMAIL_USE_TLS = True
 
 
 EMAIL_HOST_USER = 'tseth888@gmail.com'   # allows users to reset their password
-EMAIL_HOST_PASSWORD = 'jfmy qhaw sgda sllp' # -APP password
+EMAIL_HOST_PASSWORD = 'udljsnnjuzmmdxtn' # -APP password
 
-DEFUALT_FROM_EMAIL = 'tseth888@gmail.com' #GMAIL email address
+DEFAULT_FROM_EMAIL = 'tseth888@gmail.com' #GMAIL email address
 
   
 
