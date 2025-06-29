@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-#y78kwg4-7@7$%&^!-0j@&z&p_+^lw3&s(s%$7#im=)uz1)bd@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['dpg-xyz123.onrender.com', 'localhost']
 
 
 # Application definition
@@ -84,8 +84,13 @@ WSGI_APPLICATION = 'TJ.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'Task-Track',
+        'USER': 'django_task_track_db_user',
+        'PASSWORD': 'Of5kzQkQUwcDLYTmeWI1NSlCty8FgwZT',
+        'HOST': 'dpg-xyz123.onrender.com',
+        'PORT': '5432',
+        
     }
 }
 

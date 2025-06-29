@@ -13,10 +13,15 @@ from django.contrib.auth.decorators import login_required
 #importing the default django flash messages 
 from django.contrib import messages
 
-from . models import Thought, Profile
+from .models import Thought, Profile
 
 from django.contrib.auth.models import User
 
+#importing the inbuilt send-mail function from django
+from django.core.mail import send_mail
+
+#where the email is going to be sent from that is our email defined in the settings.py file...
+from django.conf import settings
 
 
 # Create your views or our functions here.
@@ -45,6 +50,11 @@ def register(request):
             
             #after saving...
             form.save()
+            
+            
+            
+            send_mail("Welcome to Jossiah's Thought", "Congratulations on creating your account", settings.DEFAULT_FROM_EMAIL, [current_user.email])
+
             
             #we tell django to create a profile object and bind it to the user who just created the account.
             profile = Profile.objects.create(user=current_user)
@@ -290,4 +300,3 @@ def deleteaccount(request):
         
     
     return render(request, 'journal/delete-account.html')
-
